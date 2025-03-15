@@ -15,7 +15,8 @@ A humorous parody website of a university results portal with intentionally chao
 
 - Frontend: HTML, CSS, JavaScript
 - Backend: Node.js, Express
-- Deployment: Vercel
+- AI Integration: Hugging Face API (Mistral-7B-Instruct)
+- Deployment: Render
 
 ## Local Development
 
@@ -29,45 +30,54 @@ A humorous parody website of a university results portal with intentionally chao
    ```
    npm run dev
    ```
-5. Open [http://localhost:3002](http://localhost:3002) in your browser
+5. Open [http://localhost:3002](http://localhost:3002) in your browser (or the port shown in the console)
 
-## Deployment to Vercel
+## Deployment to Render
 
-This project is configured for easy deployment to Vercel.
+This project is configured for easy deployment to Render.
 
 ### Automatic Deployment
 
 1. Push your code to a GitHub repository
-2. Import the project in Vercel dashboard
-3. Vercel will automatically detect the configuration and deploy the project
+2. Log in to [Render](https://render.com)
+3. Click "New" and select "Web Service"
+4. Connect your GitHub repository
+5. Configure the service:
+   - Name: `kashmir-university-parody` (or any name you prefer)
+   - Environment: `Node`
+   - Build Command: `npm install`
+   - Start Command: `node src/backend/server.js`
+   - Add the following environment variables:
+     - `NODE_ENV`: `production`
+     - `PORT`: `10000`
+     - `HUGGINGFACE_API_TOKEN`: Your Hugging Face API token
 
-### Manual Deployment
+6. Click "Create Web Service"
 
-1. Install Vercel CLI:
-   ```
-   npm install -g vercel
-   ```
-2. Login to Vercel:
-   ```
-   vercel login
-   ```
-3. Deploy the project:
-   ```
-   vercel
-   ```
+### Testing the API
+
+To check if the Hugging Face API is working correctly:
+
+```
+npm run check-api
+```
+
+This will make a test request to the Hugging Face API and display the response.
 
 ## Environment Variables
 
-The following environment variables need to be set in Vercel:
+The following environment variables need to be set in Render:
 
 - `HUGGINGFACE_API_TOKEN`: API token for Hugging Face (for AI assistant)
+- `NODE_ENV`: Set to `production` for deployment
+- `PORT`: Set to `10000` for Render
 
 ## Project Structure
 
 - `/public`: Static files and HTML
 - `/src/frontend`: Frontend JavaScript and CSS
 - `/src/backend`: Express server and API routes
-- `/api`: Vercel serverless functions
+- `/scripts`: Utility scripts for development and deployment
 
 ## License
 

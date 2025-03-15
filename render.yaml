@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: kashmir-university-parody
+    env: node
+    buildCommand: npm install
+    startCommand: node src/backend/server.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: HUGGINGFACE_API_TOKEN
+        sync: false
+    healthCheckPath: /api/health 
