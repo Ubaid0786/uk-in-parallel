@@ -25,9 +25,18 @@ const PORT = process.env.PORT || 3002;
 app.use(corsMiddleware);
 app.use(express.json());
 app.use(express.static(path.join(__dirname, '../../public'))); // Serve static files from public directory
+app.use('/src', express.static(path.join(__dirname, '../../src'))); // Serve static files from src directory
 
 // Apply routes
 app.use('/api', apiRoutes);
+
+// For Vercel serverless deployment
+if (process.env.VERCEL) {
+  // Handle all routes for client-side routing
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../../public/index.html'));
+  });
+}
 
 // Start server
 app.listen(PORT, () => {

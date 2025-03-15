@@ -1,0 +1,10 @@
+# robots.txt for Kashmir University Parody Website
+User-agent: *
+Allow: /
+
+# Disallow sensitive directories
+Disallow: /api/
+Disallow: /src/backend/
+
+# Sitemap
+Sitemap: https://your-vercel-deployment-url.vercel.app/sitemap.xml 

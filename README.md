@@ -1,94 +1,74 @@
 # Kashmir University Parody Website
 
-A humorous parody website with a sarcastic AI assistant. This project is meant for entertainment purposes only.
-
-## Project Structure
-
-```
-kashmir-university-parody/
-├── public/               # Static files
-│   └── index.html        # Main HTML file
-├── src/
-│   ├── backend/          # Server-side code
-│   │   ├── controllers/  # API controllers
-│   │   │   └── aiController.js
-│   │   ├── middleware/   # Express middleware
-│   │   │   └── cors.js
-│   │   ├── routes/       # API routes
-│   │   │   └── api.js
-│   │   ├── utils/        # Utility functions
-│   │   │   └── env.js    # Environment variable handler
-│   │   └── server.js     # Main server entry point
-│   ├── frontend/         # Client-side code
-│   │   ├── assets/       # Images and media files
-│   │   ├── css/          # Stylesheets
-│   │   │   └── styles.css
-│   │   └── js/           # JavaScript files
-│   │       ├── script.js # Main application script
-│   │       └── ai-assistant.js # AI assistant functionality
-│   └── docs/             # Documentation
-│       └── API-SETUP.md  # API setup instructions
-├── .env                  # Environment variables (not in version control)
-├── .env.example          # Example environment variables
-├── .gitignore            # Git ignore file
-├── package.json          # Project dependencies and scripts
-└── README.md             # Project documentation
-```
-
-## Getting Started
-
-### Prerequisites
-
-- Node.js (v14 or higher)
-- npm (v6 or higher)
-
-### Installation
-
-1. Clone the repository:
-```bash
-git clone https://github.com/yourusername/kashmir-university-parody.git
-cd kashmir-university-parody
-```
-
-2. Install dependencies:
-```bash
-npm install
-```
-
-3. Create a `.env` file from the example:
-```bash
-cp .env.example .env
-```
-
-4. Update the `.env` file with your Hugging Face API token (see `src/docs/API-SETUP.md` for instructions).
-
-### Running the Application
-
-For development:
-```bash
-npm run dev
-```
-
-For production:
-```bash
-npm start
-```
-
-The application will be available at http://localhost:3000
+A humorous parody website of a university results portal with intentionally chaotic design and functionality.
 
 ## Features
 
-- Parody university website with humorous content
-- AI-powered assistant that gives sarcastic and often incorrect responses
-- Fallback responses when AI service is unavailable
-- Interactive UI elements
+- Fake results checking system
+- AI assistant that gives questionable answers
+- Random conspiracy theory generator
+- Fake virus alerts
+- University circulars generator
+- And many more absurd features!
 
-## Technology Stack
+## Tech Stack
 
-- **Frontend**: HTML, CSS, JavaScript
-- **Backend**: Node.js, Express
-- **AI Integration**: Hugging Face API (Mistral-7B-Instruct)
+- Frontend: HTML, CSS, JavaScript
+- Backend: Node.js, Express
+- Deployment: Vercel
+
+## Local Development
+
+1. Clone the repository
+2. Install dependencies:
+   ```
+   npm install
+   ```
+3. Create a `.env` file based on `.env.example`
+4. Run the development server:
+   ```
+   npm run dev
+   ```
+5. Open [http://localhost:3002](http://localhost:3002) in your browser
+
+## Deployment to Vercel
+
+This project is configured for easy deployment to Vercel.
+
+### Automatic Deployment
+
+1. Push your code to a GitHub repository
+2. Import the project in Vercel dashboard
+3. Vercel will automatically detect the configuration and deploy the project
+
+### Manual Deployment
+
+1. Install Vercel CLI:
+   ```
+   npm install -g vercel
+   ```
+2. Login to Vercel:
+   ```
+   vercel login
+   ```
+3. Deploy the project:
+   ```
+   vercel
+   ```
+
+## Environment Variables
+
+The following environment variables need to be set in Vercel:
+
+- `HUGGINGFACE_API_TOKEN`: API token for Hugging Face (for AI assistant)
+
+## Project Structure
+
+- `/public`: Static files and HTML
+- `/src/frontend`: Frontend JavaScript and CSS
+- `/src/backend`: Express server and API routes
+- `/api`: Vercel serverless functions
 
 ## License
 
-This project is licensed under the MIT License - see the LICENSE file for details. 
+This project is a parody and is meant for educational and entertainment purposes only. 
