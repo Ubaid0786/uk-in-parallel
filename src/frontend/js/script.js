@@ -2851,7 +2851,7 @@ document.addEventListener('DOMContentLoaded', function() {
             // For this demo, we'll make a request to our secure server proxy
             try {
                 // Instead of calling the AI API directly, we use our server proxy
-                const apiUrl = "http://localhost:3000/api/ai-assistant";
+                const apiUrl = "/api/ai-assistant";
                 console.log("Connecting to API server at:", apiUrl);
                 
                 const response = await fetch(apiUrl, {
