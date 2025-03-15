@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kashmir University* (Parallel Universe)</title>
+    <link rel="stylesheet" href="/src/frontend/css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎓</text></svg>">
+    <meta name="description" content="Official* Results Portal of Kashmir University (Parallel Universe Edition). Check your highly questionable results!">
+    <script>
+        // Emergency function to close popup
+        function emergencyClosePopup() {
+            console.log('Emergency close triggered');
+            document.getElementById('policy-popup').style.display = 'none';
+            document.getElementById('policy-popup').classList.add('hidden');
+            return false;
+        }
+        
+        // Also handle escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                emergencyClosePopup();
+            }
+        });
+        
+        console.log('Debug mode active');
+    </script>
+</head>
+<body>
+    <div class="floating-assistant" id="floating-assistant" onclick="showRoastingAssistant()">
+        <div class="assistant-icon-container">
+            <div class="assistant-icon-bubble">🤖</div>
+        </div>
+        <div class="assistant-tooltip">Ask me anything! (I'll be !100% Right)</div>
+    </div>
+
+    <div class="glitch-container"></div>
+    
+    <div class="container">
+        <header>
+            <div class="logo-container">
+                <div class="logo">KU*</div>
+                <h1 class="blink">KASHMIR UNIVERSITY*</h1>
+                <p class="subtitle">*Results Portal (Parallel Universe Edition)</p>
+                <div class="visitor-counter">
+                    <span>Visitor #</span>
+                    <span id="visitor-count" class="rotate">∞</span>
+                    <span>since 1970</span>
+                </div>
+            </div>
+            <div class="marquee-container">
+                <marquee class="announcement blink" scrollamount="5" direction="left">IMPORTANT: Due to quantum fluctuations, all results may simultaneously exist and not exist!</marquee>
+                <marquee class="announcement-2" scrollamount="3" direction="right">BREAKING: University discovers time travel; all exams happened last week!</marquee>
+                <marquee class="announcement-3" scrollamount="7" direction="left">NOTICE: Students with marks between -∞ and +∞ must report to the Principal's office!</marquee>
+            </div>
+            <div class="fake-status-bar">
+                <div class="fake-status-item">Connection: Unstable</div>
+                <div class="fake-status-item blink">Server status: Maybe online</div>
+                <div class="fake-status-item">Last updated: Right Now</div>
+            </div>
+            
+            <div class="crazy-menu">
+                <!-- Re-evaluation button removed -->
+            </div>
+        </header>
+
+        <main>
+            <section class="result-section">
+                <div class="form-container">
+                    <h2>Check Your Results</h2>
+                    <form id="result-form">
+                        <div class="form-group">
+                            <label for="roll-number">Enter Roll Number:</label>
+                            <input type="text" id="roll-number" placeholder="e.g. 19CS1234" required>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" id="check-result-btn">Check Results</button>
+                        </div>
+                    </form>
+                    <div class="form-group action-buttons">
+                        <button type="button" id="re-evaluation-btn" onclick="showReEvaluationQuiz()">Apply for Re-evaluation</button>
+                        <button type="button" id="download-marksheet-btn" onclick="handleDownloadMarksheet()">Download Marksheet</button>
+                    </div>
+                </div>
+
+                <div id="results-display" class="hidden">
+                    <h3>Your Result</h3>
+                    <div id="result-info">
+                        <!-- Results will be displayed here -->
+                    </div>
+                    <div class="result-certificate">
+                        <canvas id="certificate-canvas" width="500" height="300"></canvas>
+                    </div>
+                </div>
+
+                <div id="loading-indicator" class="hidden">
+                    <div class="loading-spinner"></div>
+                    <p class="loading-text">Processing your request... (This may take until next semester)</p>
+                </div>
+                
+                <div class="advanced-tools">
+                    <h3 class="blink">Advanced Student Options</h3>
+                    <div class="tool-buttons">
+                        <button type="button" id="conspiracy-btn" onclick="generateConspiracyTheory()">Generate Conspiracy Theory</button>
+                        <button type="button" id="fix-result-btn" onclick="activateFakeVirusMode()">Fix My Result</button>
+                        <button type="button" id="circular-btn" onclick="showRandomCircular()">View Latest Circular</button>
+                        <button type="button" id="play-game-btn" onclick="createSnakeGame()">Play Game</button>
+                        <button type="button" id="roast-assistant-btn" onclick="showRoastingAssistant()">Ask Smart AI Assistant</button>
+                    </div>
+                    <div id="conspiracy-output" class="hidden">
+                        <p id="conspiracy-text"></p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="stats-section">
+                <h2>Your Academic Trajectory</h2>
+                <div class="graph-container">
+                    <canvas id="trajectory-graph" width="500" height="200"></canvas>
+                </div>
+                <div class="merit-list blink">
+                    <h3>MERIT LIST (TOPPERS)</h3>
+                    <ul>
+                        <li>A. Einstein - CGPA: 12.56/10</li>
+                        <li>Nikola T. - CGPA: ∞/10</li>
+                        <li>Schrödinger's Cat - CGPA: Both 0 and 10 simultaneously</li>
+                    </ul>
+                </div>
+            </section>
+        </main>
+
+        <div id="policy-popup" class="policy-popup">
+            <div class="popup-content">
+                <h3>NEW UNIVERSITY POLICY!</h3>
+                <p id="policy-text">NEW RULE: Wearing blue on Tuesdays increases your marks by 3%, but only if it's raining.</p>
+                <p style="color: red; font-weight: bold;">CLICK THE BUTTON BELOW TO CONTINUE</p>
+                <button id="close-policy" onclick="emergencyClosePopup(); return false;" style="font-size: 18px; padding: 15px; background-color: red;">CLOSE THIS POPUP</button>
+            </div>
+        </div>
+
+        <div id="error-popup" class="error-popup hidden">
+            <div class="popup-content">
+                <div class="error-header">
+                    <div class="error-icon">❌</div>
+                    <h3>System Error</h3>
+                </div>
+                <p id="error-text"></p>
+                <button id="close-error">OK</button>
+            </div>
+        </div>
+
+        <div id="circular-popup" class="circular-popup hidden">
+            <div class="popup-content">
+                <div class="circular-header">
+                    <img src="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📜</text></svg>" class="circular-icon">
+                    <h3>IMPORTANT UNIVERSITY CIRCULAR</h3>
+                </div>
+                <div class="circular-body">
+                    <div class="circular-date">Date: <span id="circular-date"></span></div>
+                    <div class="circular-ref">Ref: KU*/PAR/UNIV/<span id="circular-ref"></span></div>
+                    <h4 class="circular-subject" id="circular-subject"></h4>
+                    <div class="circular-content" id="circular-content"></div>
+                    <div class="circular-footer">
+                        <div class="signature">
+                            <img src="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>✍️</text></svg>" class="signature-img">
+                            <p>Controller of Examinations*</p>
+                            <p><small>*May or may not exist</small></p>
+                        </div>
+                    </div>
+                </div>
+                <button id="close-circular">Acknowledge & Ignore</button>
+            </div>
+        </div>
+
+        <div id="virus-popup" class="virus-popup hidden">
+            <div class="popup-content">
+                <h3 class="virus-header">⚠️ SYSTEM ALERT ⚠️</h3>
+                <div class="virus-message" id="virus-message"></div>
+                <div class="fake-progress">
+                    <div class="progress-bar" id="fake-progress-bar"></div>
+                </div>
+                <button id="close-virus" class="hidden">Cancel Operation</button>
+            </div>
+        </div>
+
+        <div id="roast-assistant-popup" class="roast-assistant-popup hidden">
+            <div class="popup-content">
+                <div class="assistant-header">
+                    <div class="assistant-icon">🤖</div>
+                    <h3>UNIVERSITY ASSISTANCE AI</h3>
+                    <div class="assistant-status blink">Status: Chaotically Smart</div>
+                </div>
+                <div class="assistant-chat">
+                    <div id="assistant-messages" class="assistant-messages">
+                        <div class="assistant-message">
+                            <p>I'm your AI assistant, equipped with questionable intelligence! Ask me anything about the university and I might:</p>
+                            <p>🔥 <strong>Roast you</strong> with an absurdly incorrect answer</p>
+                            <p>❌ Give you <strong>confidently wrong</strong> information that sounds official</p>
+                            <p>✅ Occasionally provide <strong>genuinely helpful</strong> advice (by accident)</p>
+                            <p>🎭 Share <strong>hilariously absurd</strong> university "facts"</p>
+                            <p>What do you want to know? I'm ready to be unhelpful (or helpful) in spectacular fashion!</p>
+                        </div>
+                    </div>
+                    <div class="assistant-input">
+                        <input type="text" id="assistant-question" placeholder="Ask me something...">
+                        <button id="assistant-send-btn" onclick="sendAssistantQuestion()">Send</button>
+                    </div>
+                </div>
+                <button id="close-assistant" onclick="closeRoastingAssistant(); return false;">Close Assistant</button>
+            </div>
+        </div>
+
+        <footer>
+            <div class="footer-animations">
+                <img src="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎓</text></svg>" class="floating-icon">
+                <img src="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📚</text></svg>" class="floating-icon">
+                <img src="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🤔</text></svg>" class="floating-icon">
+            </div>
+            <div class="fake-links">
+                <a href="#" onclick="showError('This link is on vacation.'); return false;">University Home</a> | 
+                <a href="#" onclick="showError('The contact page requires a PhD to access.'); return false;">Contact Us</a> | 
+                <a href="#" onclick="showError('FAQ: Why does nothing make sense? A: Yes.'); return false;">FAQ</a> | 
+                <a href="#" onclick="activateFakeVirusMode(); return false;">Security</a>
+            </div>
+            <p>© 2023 Kashmir University* (Parallel Universe). All rights both reserved and unreserved simultaneously.</p>
+            <p class="disclaimer">Disclaimer: This is a parody website. Any resemblance to actual university systems is purely coincidental and probably worrying.</p>
+            <div class="browser-note blink">Best viewed with Netscape Navigator 3.0 or Internet Explorer 5.5</div>
+        </footer>
+    </div>
+
+    <!-- Audio removed to prevent timeout errors -->
+    <div id="debug-status" style="position: fixed; bottom: 0; right: 0; background: white; color: black; padding: 5px; font-size: 12px; z-index: 10000;">
+        Ready
+    </div>
+
+    <script src="/src/frontend/js/script.js"></script>
+    <script src="/src/frontend/js/ai-assistant.js"></script>
+    <script>
+        // Initialize popup with default text in case script.js fails
+        window.onload = function() {
+            console.log("Page fully loaded - initializing emergency handlers");
+            // Function to handle popup closure directly
+            function directClosePopup() {
+                var popup = document.getElementById('policy-popup');
+                if (popup) {
+                    popup.style.display = 'none';
+                    popup.classList.add('hidden');
+                }
+            }
+            
+            // Emergency button handler
+            var closeBtn = document.getElementById('close-policy');
+            if (closeBtn) {
+                closeBtn.onclick = directClosePopup;
+            }
+            
+            // Set default text if it's empty
+            var policyTextEl = document.getElementById('policy-text');
+            if (policyTextEl && policyTextEl.textContent.trim() === '') {
+                policyTextEl.textContent = "NEW RULE: Wearing blue on Tuesdays increases your marks by 3%, but only if it's raining.";
+            }
+            
+            // Add debug status updates for every button
+            document.querySelectorAll('button').forEach(function(button) {
+                button.addEventListener('click', function() {
+                    var debugStatus = document.getElementById('debug-status');
+                    if (debugStatus) {
+                        debugStatus.textContent = 'Button clicked: ' + (button.textContent || 'Unknown') + ' at ' + new Date().toLocaleTimeString();
+                    }
+                });
+            });
+            
+            // Create random visitor count
+            var visitorCount = document.getElementById('visitor-count');
+            if (visitorCount) {
+                setInterval(function() {
+                    // Generate random number with random number of digits
+                    var digits = Math.floor(Math.random() * 10) + 1;
+                    var number = Math.floor(Math.random() * Math.pow(10, digits));
+                    visitorCount.textContent = number.toLocaleString();
+                }, 5000);
+            }
+            
+            // Add keyboard shortcuts that do absurd things
+            document.addEventListener('keydown', function(e) {
+                // Ctrl+Alt+D (debug mode)
+                if (e.ctrlKey && e.altKey && e.key === 'd') {
+                    document.body.classList.toggle('debug-mode');
+                    alert('You have ' + (document.body.classList.contains('debug-mode') ? 'enabled' : 'disabled') + ' debug mode. Nothing will change.');
+                }
+                
+                // Ctrl+Alt+F (flip entire page)
+                if (e.ctrlKey && e.altKey && e.key === 'f') {
+                    document.body.style.transform = document.body.style.transform === 'rotate(180deg)' ? '' : 'rotate(180deg)';
+                }
+            });
+            
+            // Create cursor trail for extra 90s effect
+            if (!window.isMobile) {
+                var trail = [];
+                var trailLength = 10;
+                
+                for (var i = 0; i < trailLength; i++) {
+                    var dot = document.createElement('div');
+                    dot.className = 'cursor-trail';
+                    dot.style.width = '5px';
+                    dot.style.height = '5px';
+                    dot.style.backgroundColor = 'hsl(' + (i * 36) + ', 100%, 50%)';
+                    dot.style.position = 'fixed';
+                    dot.style.borderRadius = '50%';
+                    dot.style.zIndex = '9999';
+                    dot.style.pointerEvents = 'none';
+                    dot.style.opacity = 1 - (i / trailLength);
+                    document.body.appendChild(dot);
+                    trail.push(dot);
+                }
+                
+                document.addEventListener('mousemove', function(e) {
+                    trail.forEach(function(dot, index) {
+                        setTimeout(function() {
+                            dot.style.left = e.clientX + 'px';
+                            dot.style.top = e.clientY + 'px';
+                        }, index * 40);
+                    });
+                });
+            }
+        };
+    </script>
+    <style>
+        /* Last-minute inline styles for extra fun */
+        .floating-icon {
+            width: 40px;
+            height: 40px;
+            animation: float 8s infinite ease-in-out;
+            margin: 0 10px;
+        }
+        
+        .floating-icon:nth-child(2) { animation-delay: 2s; }
+        .floating-icon:nth-child(3) { animation-delay: 4s; }
+        
+        .footer-animations {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 15px;
+        }
+        
+        .fake-links {
+            margin-bottom: 15px;
+            font-family: 'Comic Neue', cursive;
+        }
+        
+        .fake-links a {
+            color: #00ffff;
+            text-decoration: underline;
+            padding: 0 10px;
+        }
+        
+        .fake-links a:hover {
+            color: #ff00ff;
+            text-decoration: line-through;
+        }
+        
+        .browser-note {
+            font-size: 10px;
+            margin-top: 15px;
+            color: #888;
+        }
+        
+        .marquee-container {
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+            height: 60px;
+        }
+        
+        .announcement-2 {
+            color: #00ffff;
+            background-color: #330066;
+            padding: 5px;
+        }
+        
+        .announcement-3 {
+            color: #ffff00;
+            background-color: #660033;
+            padding: 5px;
+        }
+        
+        .fake-status-bar {
+            display: flex;
+            justify-content: space-between;
+            background-color: #003366;
+            padding: 5px;
+            font-size: 12px;
+            border-top: 1px solid #ffffff;
+            border-bottom: 1px solid #ffffff;
+        }
+        
+        .visitor-counter {
+            background-color: #000000;
+            border: 1px solid #ffffff;
+            padding: 5px;
+            font-size: 12px;
+            margin-top: 10px;
+            display: inline-block;
+        }
+        
+        #visitor-count {
+            font-weight: bold;
+            color: #ff0000;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .rotate {
+            display: inline-block;
+            animation: rotate 5s linear infinite;
+        }
+        
+        .cursor-trail {
+            transition: all 0.1s ease;
+            box-shadow: 0 0 10px 2px currentColor;
+        }
+        
+        .debug-mode * {
+            outline: 1px solid rgba(255, 0, 255, 0.5) !important;
+        }
+        
+        /* Crazy Re-evaluation Menu Styles */
+        .crazy-menu {
+            margin-top: 15px;
+            text-align: center;
+            padding: 10px;
+            border: 3px dashed #ff00ff;
+            background: linear-gradient(45deg, rgba(0,0,150,0.7), rgba(150,0,150,0.7));
+            animation: pulse 2s infinite alternate;
+            max-width: 80%;
+            margin-left: auto;
+            margin-right: auto;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(255, 0, 255, 0.6);
+        }
+        
+        /* Re-evaluation button styles removed */
+        
+        .menu-description {
+            color: #ffff00;
+            font-size: 14px;
+            font-style: italic;
+            margin-top: 5px;
+        }
+        
+        @keyframes gradient-shift {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 200% 50%; }
+        }
+        
+        @keyframes pulse {
+            from { box-shadow: 0 0 10px rgba(255, 0, 255, 0.4); }
+            to { box-shadow: 0 0 25px rgba(255, 0, 255, 0.8); }
+        }
+    </style>
+</body>
+</html> 
