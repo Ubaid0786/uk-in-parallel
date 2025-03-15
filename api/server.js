@@ -26,8 +26,28 @@ const app = express();
 // Apply middleware
 app.use(corsMiddleware);
 app.use(express.json());
-app.use(express.static(path.join(__dirname, '../public'))); // Serve static files from public directory
-app.use('/src', express.static(path.join(__dirname, '../src'))); // Serve static files from src directory
+
+// Serve static files with proper MIME types
+app.use(express.static(path.join(__dirname, '../public'), {
+  setHeaders: (res, filePath) => {
+    if (filePath.endsWith('.css')) {
+      res.setHeader('Content-Type', 'text/css');
+    } else if (filePath.endsWith('.js')) {
+      res.setHeader('Content-Type', 'application/javascript');
+    }
+  }
+}));
+
+// Serve files from src directory
+app.use('/src', express.static(path.join(__dirname, '../src'), {
+  setHeaders: (res, filePath) => {
+    if (filePath.endsWith('.css')) {
+      res.setHeader('Content-Type', 'text/css');
+    } else if (filePath.endsWith('.js')) {
+      res.setHeader('Content-Type', 'application/javascript');
+    }
+  }
+}));
 
 // Apply routes
 app.use('/api', apiRoutes);

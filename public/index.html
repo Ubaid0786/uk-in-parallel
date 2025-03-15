@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <base href="/">
     <title>Kashmir University* (Parallel Universe)</title>
     <link rel="preload" href="/src/frontend/css/styles.css" as="style">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="/src/frontend/css/styles.css" onerror="this.onerror=null;this.href='fallback.css';">
+    <link rel="stylesheet" href="/src/frontend/css/styles.css" onerror="this.onerror=null;this.href='/inline-styles.css';">
     <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎓</text></svg>">
     <meta name="description" content="Official* Results Portal of Kashmir University (Parallel Universe Edition). Check your highly questionable results!">
@@ -43,6 +44,42 @@
             }
         });
     </script>
+    <style>
+        /* Inline critical CSS as a fallback */
+        body {
+            font-family: 'Comic Neue', 'Arial', sans-serif;
+            background-color: #000080;
+            color: #ffff00;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        h1 {
+            color: #ff00ff;
+            font-size: 2.5rem;
+        }
+        .hidden {
+            display: none;
+        }
+        #debug-status {
+            position: fixed;
+            bottom: 0;
+            right: 0;
+            background: white;
+            color: black;
+            padding: 5px;
+            font-size: 12px;
+            z-index: 10000;
+        }
+    </style>
 </head>
 <body>
     <div class="floating-assistant" id="floating-assistant" onclick="showRoastingAssistant()">
@@ -251,6 +288,8 @@
         Ready
     </div>
 
+    <script src="/css-loader.js"></script>
+    <script src="/check-resources.js"></script>
     <script src="/src/frontend/js/script.js" onerror="console.error('Failed to load script.js'); document.getElementById('debug-status').textContent = 'Error: Failed to load script.js'"></script>
     <script src="/src/frontend/js/ai-assistant.js" onerror="console.error('Failed to load ai-assistant.js'); document.getElementById('debug-status').textContent = 'Error: Failed to load ai-assistant.js'"></script>
     <script>

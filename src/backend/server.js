@@ -2,6 +2,7 @@
 const path = require('path');
 const express = require('express');
 const dotenv = require('dotenv');
+const net = require('net');
 
 // Load environment variables from .env file
 const result = dotenv.config({ path: path.resolve(process.cwd(), '.env') });
@@ -19,7 +20,7 @@ const apiRoutes = require('./routes/api');
 
 // Initialize Express app
 const app = express();
-const PORT = process.env.PORT || 3002;
+const DEFAULT_PORT = process.env.PORT || 3002;
 
 // Apply middleware
 app.use(corsMiddleware);
@@ -38,7 +39,49 @@ if (process.env.VERCEL) {
   });
 }
 
-// Start server
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-}); 
+// Function to check if a port is in use
+function isPortInUse(port) {
+  return new Promise((resolve) => {
+    const server = net.createServer();
+    
+    server.once('error', (err) => {
+      if (err.code === 'EADDRINUSE') {
+        resolve(true); // Port is in use
+      } else {
+        resolve(false); // Some other error
+      }
+    });
+    
+    server.once('listening', () => {
+      // Close the server if it starts listening
+      server.close();
+      resolve(false); // Port is not in use
+    });
+    
+    server.listen(port);
+  });
+}
+
+// Function to find an available port
+async function findAvailablePort(startPort) {
+  let port = startPort;
+  while (await isPortInUse(port)) {
+    console.log(`Port ${port} is already in use, trying ${port + 1}...`);
+    port++;
+  }
+  return port;
+}
+
+// Start server with dynamic port
+async function startServer() {
+  try {
+    const port = await findAvailablePort(DEFAULT_PORT);
+    app.listen(port, () => {
+      console.log(`Server running on port ${port}`);
+    });
+  } catch (error) {
+    console.error('Error starting server:', error);
+  }
+}
+
+startServer(); 
